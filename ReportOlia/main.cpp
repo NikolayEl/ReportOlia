@@ -51,13 +51,14 @@ void main()
 	if (!work_file)
 	{
 		cout << "Файл - " << file_name << " не найден" << endl;
+		system("PAUSE");
 		exit(0);
 	}
 
-	string accrualDate[500], Type[500], numberOfDeparture[500], dateOfAdoption[500], shippingWarehouse[500], listSKU[500];
-	string listArtikl[500], producrList[500], forSale[500], comission[1000], orderAssembly[500];
-	string shipmentProcessing[500], highway[500], lastMile[500], returnLine[1000], returnProcessing[500];
-	string processingOfCanceledGoods[500], processingOfUnpurchasedGoods[500], logistics[500], reversLogistics[500], total[500];
+	string accrualDate[1000], producrList[1000], tempLines[600], total[1000];
+	//string listArtikl[500], forSale[500], comission[1000], orderAssembly[500], Type[500], numberOfDeparture[500], dateOfAdoption[500]; //Все переменные со всех столбцов
+	//string shipmentProcessing[500], highway[500], lastMile[500], returnLine[1000], returnProcessing[500], shippingWarehouse[500];
+	//string processingOfCanceledGoods[500], processingOfUnpurchasedGoods[500], logistics[500], reversLogistics[500], listSKU[500];
 
 
 	// accrualDate - Дата начисления
@@ -86,26 +87,27 @@ void main()
 	{
 		stringstream stream(line);
 		getline(stream, accrualDate[i], delimiter);
-		getline(stream, Type[i], delimiter);
-		getline(stream, numberOfDeparture[i], delimiter);
-		getline(stream, dateOfAdoption[i], delimiter);
-		getline(stream, shippingWarehouse[i], delimiter);
-		getline(stream, listSKU[i], delimiter);
-		getline(stream, listArtikl[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
 		getline(stream, producrList[i], delimiter);
-		getline(stream, forSale[i], delimiter);
-		getline(stream, comission[i], delimiter);
-		getline(stream, orderAssembly[i], delimiter);
-		getline(stream, shipmentProcessing[i], delimiter);
-		getline(stream, highway[i], delimiter);
-		getline(stream, lastMile[i], delimiter);
-		getline(stream, returnLine[i], delimiter);
-		getline(stream, returnProcessing[i], delimiter);
-		getline(stream, processingOfCanceledGoods[i], delimiter);
-		getline(stream, processingOfUnpurchasedGoods[i], delimiter);
-		getline(stream, logistics[i], delimiter);
-		getline(stream, reversLogistics[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
+		getline(stream, tempLines[i], delimiter);
 		getline(stream, total[i], delimiter);
+
 		i++;
 	}
 
@@ -119,10 +121,11 @@ void main()
 	if (!work_file2) 
 	{
 		cout << "Файл - " << file_name2 << " не найден" << endl;
+		system("PAUSE");
 		exit(0);
 	}
 
-	string tempLines[600], shippingDate[600], nameOfProduct[600], ozonId[600], finalCostOfGoods[600], quantity[600]; 
+	string shippingDate[600], nameOfProduct[600], ozonId[600], finalCostOfGoods[600], quantity[600]; 
 
 
 	// tempLines[1000] - замена не нужного значения
@@ -212,7 +215,7 @@ void main()
 	List_of_goods[2].name = "Пусеты";
 	List_of_goods[2].order1 = "3284487";
 	List_of_goods[2].order2 = "3169751";
-	List_of_goods[2].order3 = "3383120";
+	List_of_goods[2].order3 = "1864424";
 	List_of_goods[2].ID = "924089702";
 
 	List_of_goods[3].name = "Парные браслеты";
@@ -248,11 +251,11 @@ void main()
 	int all_sumR = 0;
 	for (int i = 0; i < numberOfLines; i++)
 	{
-		if (producrList[i] != "" && producrList[i].substr(2, 5) == "Заказ") 
+		if (producrList[i] != "" && producrList[i].substr(1, 5) == "Заказ" || producrList[i] != "" && producrList[i].substr(2, 5) == "Заказ")
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				if (producrList[i].substr(9, 7) == List_of_goods[j].order1 || producrList[i].substr(9, 7) == List_of_goods[j].order2 || producrList[i].substr(9, 7) == List_of_goods[j].order3)
+				if (producrList[i].substr(8, 7) == List_of_goods[j].order1 || producrList[i].substr(8, 7) == List_of_goods[j].order2 || producrList[i].substr(8, 7) == List_of_goods[j].order3 || producrList[i].substr(9, 7) == List_of_goods[j].order1 || producrList[i].substr(9, 7) == List_of_goods[j].order2 || producrList[i].substr(9, 7) == List_of_goods[j].order3)
 				{
 					List_of_goods[j].sumR += stoi(total[i]);
 					List_of_goods[j].data = accrualDate[i];
