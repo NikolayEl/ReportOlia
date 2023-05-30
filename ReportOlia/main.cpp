@@ -55,7 +55,7 @@ void main()
 		exit(0);
 	}
 
-	string accrualDate[1000], producrList[1000], tempLines[600], total[1000];
+	string accrualDate[1000], producrList[1000], tempLines[1000], total[1000];
 	//string listArtikl[500], forSale[500], comission[1000], orderAssembly[500], Type[500], numberOfDeparture[500], dateOfAdoption[500]; //Все переменные со всех столбцов
 	//string shipmentProcessing[500], highway[500], lastMile[500], returnLine[1000], returnProcessing[500], shippingWarehouse[500];
 	//string processingOfCanceledGoods[500], processingOfUnpurchasedGoods[500], logistics[500], reversLogistics[500], listSKU[500];
@@ -125,7 +125,7 @@ void main()
 		exit(0);
 	}
 
-	string shippingDate[600], nameOfProduct[600], ozonId[600], finalCostOfGoods[600], quantity[600]; 
+	string shippingDate[1000], nameOfProduct[1000], ozonId[1000], finalCostOfGoods[1000], quantity[1000]; 
 
 
 	// tempLines[1000] - замена не нужного значения
