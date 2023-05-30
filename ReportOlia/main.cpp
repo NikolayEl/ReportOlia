@@ -226,7 +226,6 @@ void main()
 
 	//-----------------------------------------------------------------------------------------------------------------------------------
 // Список продаж
-	cout << endl << endl << "Продажи по товарам: " << endl << endl;
 
 	for (int j = 0; j < 4; j++)
 	{
@@ -240,14 +239,8 @@ void main()
 		}
 	}
 
-	for (int i = 0; i < 4; i++) cout << List_of_goods[i].name << " " << List_of_goods[i].sumS << endl;
-
-	//cout << floor(2.8) << endl;
-
-
 	//---------------------------------------------------------------------------------------------------------------------------------
 	// Список рекламы
-	cout << endl <<"Затраты на рекламу: " << endl << endl;
 	int all_sumR = 0;
 	for (int i = 0; i < numberOfLines; i++)
 	{
@@ -264,19 +257,17 @@ void main()
 			}
 		}
 	}
-	
+	cout << "Продажи и затраты по товарам" << endl << endl;
 	for (int i = 0; i < 4; i++)
 	{
-		cout << List_of_goods[i].name << " " << List_of_goods[i].sumR;
-		if (List_of_goods[i].sumS != 0 && List_of_goods[i].sumR != 0)
-		{
-			cout << " в процентах: " << round((double(List_of_goods[i].sumR * (-1)) / double(List_of_goods[i].sumS) * 100)*100)/100 << "%";
-			List_of_goods[i].ddr = round((double(List_of_goods[i].sumR * (-1)) / double(List_of_goods[i].sumS) * 100) * 100) / 100;
-		}
-		cout << endl;
+		cout << "Дата \t\t\t\t\t" << List_of_goods[i].data << endl;
+		cout << "Наименование \t\t\t" << List_of_goods[i].name << endl;
+		cout << "ID\t\t\t\t" << List_of_goods[i].ID << endl;
+		cout << "Сумма продаж\t\t\t" << List_of_goods[i].sumS << "руб." << endl;
+		cout << "Количество продаж \t\t" << List_of_goods[i].count_sale << "шт." << endl;
+		cout << "Сумма затрат на рекламу\t\t" << List_of_goods[i].sumR << "руб." << endl;
+		cout << "ДДР \t\t\t\t" << List_of_goods[i].ddr << " % " << endl << endl;
 	}
-	cout << "Итого затраты на рекламу: " << all_sumR << "руб." << endl;
-
 	string file_output;
 	cout << endl << "Перед сохранение в файл, если вы хотите дать имя уже существующего файла - обязательно убедитесь, что он закрыт, если нет то закройте его!" << endl;
 	system("PAUSE");
