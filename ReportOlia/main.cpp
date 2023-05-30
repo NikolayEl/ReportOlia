@@ -177,28 +177,6 @@ void main()
 
 	work_file2.close();
 
-	//for (int i = 0; i < numberOfLines2; i++)
-	//{
-	//	cout << "Number - " << i << " ";
-	//	cout << "Data - " << shippingDate[i] << "; ";
-	//	cout << "Name - " << nameOfProduct[i] << "; ";
-	//	cout << "Ozon ID - " << ozonId[i] << "; ";
-	//	cout << "Cost - " << finalCostOfGoods[i] << endl;
-	//}
-
-	// Заполняем базу данных
-
-// Заказ №3175878 - 803944569 Набор подростковый
-// Заказ №3196946 - 803944569 
-// Заказ №1947870 - 803944569
-// Заказ №3284445 - 924089759 Искусственный жемчуг золото
-// Заказ №3196775 - 924089759
-// Заказ №1864474 - 924089759
-// Заказ №3284487 - 924089702 Пусеты
-// Заказ №3169751 - 924089702
-// Заказ №1864424 - 924089702
-// Заказ №3383120 - 977610629 Парные браслеты
-
 	listOfgoods  List_of_goods[4];
 	List_of_goods[0].name = "Набор подростковый";
 	List_of_goods[0].order1 = "3175878";
@@ -241,7 +219,6 @@ void main()
 
 	//---------------------------------------------------------------------------------------------------------------------------------
 	// Список рекламы
-	int all_sumR = 0;
 	for (int i = 0; i < numberOfLines; i++)
 	{
 		if (producrList[i] != "" && producrList[i].substr(1, 5) == "Заказ" || producrList[i] != "" && producrList[i].substr(2, 5) == "Заказ")
@@ -252,12 +229,13 @@ void main()
 				{
 					List_of_goods[j].sumR += stoi(total[i]);
 					List_of_goods[j].data = accrualDate[i];
-					all_sumR += List_of_goods[j].sumR;
+					if(List_of_goods[j].sumR != 0 && List_of_goods[j].sumS != 0)List_of_goods[j].ddr = round(((double)(List_of_goods[j].sumR* (-1)) / (double)List_of_goods[j].sumS)*100);
 				}
 			}
 		}
 	}
 	cout << "Продажи и затраты по товарам" << endl << endl;
+	int all_sumR = 0, all_sumS = 0;
 	for (int i = 0; i < 4; i++)
 	{
 		cout << "Дата \t\t\t\t\t" << List_of_goods[i].data << endl;
@@ -267,7 +245,13 @@ void main()
 		cout << "Количество продаж \t\t" << List_of_goods[i].count_sale << "шт." << endl;
 		cout << "Сумма затрат на рекламу\t\t" << List_of_goods[i].sumR << "руб." << endl;
 		cout << "ДДР \t\t\t\t" << List_of_goods[i].ddr << " % " << endl << endl;
+		all_sumR += List_of_goods[i].sumR;
+		all_sumS += List_of_goods[i].sumS;
 	}
+	cout << endl << "Общая сумма продаж:\t\t " << all_sumS << " руб." << endl;
+	cout << endl << "Общая сумма затрат на рекламу:\t " << all_sumR << " руб." << endl;
+	cout << endl << "Итоговый ДДР:\t\t\t " << round(((double)(all_sumR * (-1)) / (double)all_sumS) * 100) << "%" << endl;
+
 	string file_output;
 	cout << endl << "Перед сохранение в файл, если вы хотите дать имя уже существующего файла - обязательно убедитесь, что он закрыт, если нет то закройте его!" << endl;
 	system("PAUSE");
@@ -293,6 +277,9 @@ void main()
 			file << "Сумма затрат на рекламу\t" << List_of_goods[i].sumR << "руб." << endl;
 			file << "ДДР \t\t\t\t\t" << List_of_goods[i].ddr << " % " << endl << endl;
 		}
+		file << endl << "Общая сумма продаж:\t\t\t\t " << all_sumS << " руб." << endl;
+		file << endl << "Общая сумма затрат на рекламу:\t " << all_sumR << " руб." << endl;
+		file << endl << "Итоговый ДДР:\t\t\t\t\t " << round(((double)(all_sumR * (-1)) / (double)all_sumS) * 100) << "%" << endl;
 	}
 
 	file.close();
