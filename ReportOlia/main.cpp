@@ -8,22 +8,7 @@
 using namespace std;
 
 
-
-
-void Number_Of_Lines(string file_name, int& numberOfLines)
-{
-	ifstream file(file_name);
-	if (file)
-	{
-		string str;
-		while (getline(file, str))
-		{
-			numberOfLines++;
-		}
-		file.close();
-		//cout << "Lines - " << numberOfLines << endl;
-	}
-}
+void Number_Of_Lines(string file_name, int& numberOfLines);
 
 void main()
 {
@@ -283,4 +268,19 @@ void main()
 	}
 
 	file.close();
+}
+
+void Number_Of_Lines(string file_name, int& numberOfLines)
+{
+	ifstream file(file_name);
+	if (file)
+	{
+		string str;
+		while (getline(file, str))
+		{
+			numberOfLines++;
+		}
+		file.close();
+		//cout << "Lines - " << numberOfLines << endl;
+	}
 }
